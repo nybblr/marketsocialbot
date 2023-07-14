@@ -12,7 +12,6 @@ const app = new App({
 const welcomeChannelId = process.env.SLACK_WELCOME_CHANNEL_ID;
 const welcomeGuideLink = process.env.SLACK_WELCOME_GUIDE_LINK;
 
-// When a user joins the team, send a message in a predefined channel asking them to introduce themselves
 app.event('team_join', async ({ event, client }) => {
   let { user } = event;
   
@@ -20,13 +19,13 @@ app.event('team_join', async ({ event, client }) => {
   await sendOnboarding({ client, user });
 });
 
-app.event('member_joined_channel', async ({ event, client }) => {
-  let { user: userId } = event;
-  let { user } = await client.users.info({ user: userId });
+// app.event('member_joined_channel', async ({ event, client }) => {
+//   let { user: userId } = event;
+//   let { user } = await client.users.info({ user: userId });
 
-  await sayHello({ event, client, user });
-  await sendOnboarding({ client, user });
-});
+//   await sayHello({ event, client, user });
+//   await sendOnboarding({ client, user });
+// });
 
 async function sendOnboarding({ client, user }) {
   let { channel } = await client.conversations.open({
