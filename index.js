@@ -16,7 +16,7 @@ const mainChannelId = process.env.SLACK_ANNOUNCEMENTS_CHANNEL_ID;
 app.event('team_join', async ({ event, client }) => {
   let { user } = event;
   
-  //await sayHello({ event, client, user });
+  await sayHello({ event, client, user });
   await sendOnboarding({ client, user });
 });
 
@@ -41,6 +41,7 @@ async function sendOnboarding({ client, user }) {
 Please take a minute to:
 
 - *Read the <${welcomeGuideLink}|Welcome Guide>* — it’s got all the important things 😎
+- *Say hi in the <#${welcomeChannelId}> channel* (I’ve already started a thread for you 🤗)
 - *Then head to the <#${mainChannelId}> channel* to catch up on anything new!`
   });
   console.log(message);
