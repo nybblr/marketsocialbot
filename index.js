@@ -11,6 +11,7 @@ const app = new App({
 
 const welcomeChannelId = process.env.SLACK_WELCOME_CHANNEL_ID;
 const welcomeGuideLink = process.env.SLACK_WELCOME_GUIDE_LINK;
+const mainChannelId = process.env.SLACK_ANNOUNCEMENTS_CHANNEL_ID;
 
 app.event('team_join', async ({ event, client }) => {
   let { user } = event;
@@ -37,10 +38,11 @@ async function sendOnboarding({ client, user }) {
     text:
 `Welcome to Market Social! 🎉 Market Social is a social community for young adults in their 20s and 30s living in C’ville. We help people in a transient city form acquaintances that lead to meaningful relationships.
 
-First up, please:
+Please take a minute to:
 
 - *Read the <${welcomeGuideLink}|Welcome Guide>* — it’s got all the important things 😎
-- *Say hi in the <#${welcomeChannelId}> channel* (I’ve already started a thread for you 🤗)`
+- *Say hi in the <#${welcomeChannelId}> channel* (I’ve already started a thread for you 🤗)
+- *Then head to the <#${mainChannelId}> channel* to catch up on anything new!`
   });
   console.log(message);
 }
